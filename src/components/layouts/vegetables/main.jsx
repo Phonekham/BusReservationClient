@@ -13,7 +13,7 @@ import {
   svgservice,
   svgoffer,
 } from "../../../services/script";
-import HeaderTwo from "../../common/headers/header-two";
+import HeaderTwo from "../../common/headers/header-five";
 import FooterOne from "../../common/footers/footer-one";
 import ThemeSettings from "../../common/theme-settings";
 
