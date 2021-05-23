@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import "../../common/index.scss";
 import Slider from "react-slick";
-import { Link } from "react-router-dom";
 
 // Import custom components
 import { Slider3 } from "../../../services/script";
@@ -13,8 +12,8 @@ import {
   svgservice,
   svgoffer,
 } from "../../../services/script";
-import HeaderTwo from "../../common/headers/header-five";
-import FooterOne from "../../common/footers/footer-one";
+import HeaderTwo from "../../common/headers/header";
+import FooterOne from "../../common/footers/footer";
 import ThemeSettings from "../../common/theme-settings";
 
 class Vegetables extends Component {

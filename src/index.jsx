@@ -4,9 +4,9 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { ScrollContext } from "react-router-scroll-4";
 import { IntlProvider } from "react-redux-multilingual";
-import "./index.scss";
 
 // Import custom components
+import "./index.scss";
 import store from "./store";
 import translations from "./constants/translations";
 import App from "./App";
