@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { IntlActions } from "react-redux-multilingual";
+import { IntlActions, withTranslate } from "react-redux-multilingual";
 import Pace from "react-pace-progress";
 
 // Import custom components
@@ -68,6 +68,7 @@ class HeaderFive extends Component {
   };
 
   render() {
+    const { translate } = this.props;
     return (
       <div>
         <header id="sticky" className="sticky header-2 header-6">
@@ -100,16 +101,16 @@ class HeaderFive extends Component {
                             </div>
                             <i className="fa fa-cog"></i>
                             <div className="show-div setting">
-                              <h6>language</h6>
+                              <h6> {translate("language")}</h6>
                               <ul>
                                 <li>
                                   <a onClick={() => this.changeLanguage("en")}>
-                                    English
+                                    {translate("en_lang")}
                                   </a>{" "}
                                 </li>
                                 <li>
                                   <a onClick={() => this.changeLanguage("la")}>
-                                    French
+                                    {translate("lao_lang")}
                                   </a>{" "}
                                 </li>
                               </ul>
@@ -129,4 +130,4 @@ class HeaderFive extends Component {
   }
 }
 
-export default connect(null, {})(HeaderFive);
+export default connect(null, {})(withTranslate(HeaderFive));

@@ -5,6 +5,9 @@ var module = {
       home: "ໜ້າຫຼັກ",
       about_us: "ກ່ຽວກັບພວກເຮົາ",
       contact: "ຕິດຕໍ່",
+      lao_lang: "ພາສາລາວ",
+      en_lang: "ພາສາອັງກິດ",
+      language: "ພາສາ",
     },
   },
   en: {
@@ -13,6 +16,9 @@ var module = {
       home: "Home",
       about_us: "About Us",
       contact: "Contact",
+      lao_lang: "Lao",
+      en_lang: "English",
+      language: "Language",
     },
   },
 };
