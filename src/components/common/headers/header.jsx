@@ -100,7 +100,7 @@ class HeaderFive extends Component {
                               />
                             </div>
                             <i className="fa fa-cog"></i>
-                            <div className="show-div setting">
+                            <div className="show-div setting lao">
                               <h6> {translate("language")}</h6>
                               <ul>
                                 <li>
