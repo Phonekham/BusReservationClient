@@ -4,10 +4,9 @@ import Pace from "react-pace-progress";
 
 // Import custom components
 import store from "../../../store";
-import NavBar from "./common/navbar";
-import SideBar from "./common/sidebar";
 import { connect } from "react-redux";
-import TopBarDark from "./common/topbar-dark";
+import NavBar from "./common/navbar";
+import TopBar from "./common/topbar";
 import LogoImage from "./common/logo";
 
 class HeaderFive extends Component {
@@ -18,9 +17,8 @@ class HeaderFive extends Component {
       isLoading: false,
     };
   }
-  /*=====================
-         Pre loader
-         ==========================*/
+  /*===================== Pre loader ==========================*/
+
   componentDidMount() {
     setTimeout(function() {
       document.querySelector(".loader-wrapper").style = "display: none";
@@ -60,13 +58,6 @@ class HeaderFive extends Component {
       openmyslide.classList.add("open-side");
     }
   }
-  openSearch() {
-    document.getElementById("search-overlay").style.display = "block";
-  }
-
-  closeSearch() {
-    document.getElementById("search-overlay").style.display = "none";
-  }
 
   load = () => {
     this.setState({ isLoading: true });
@@ -79,12 +70,11 @@ class HeaderFive extends Component {
   render() {
     return (
       <div>
-        <header id="sticky" className="sticky">
+        <header id="sticky" className="sticky header-2 header-6">
           {this.state.isLoading ? <Pace color="#27ae60" /> : null}
           <div className="mobile-fix-option"></div>
           {/*Top Header Component*/}
-          <TopBarDark />
-
+          <TopBar />
           <div className="container">
             <div className="row">
               <div className="col-sm-12">
@@ -93,39 +83,13 @@ class HeaderFive extends Component {
                     <div className="brand-logo">
                       <LogoImage logo={this.props.logoName} />
                     </div>
-                    <div className="navbar">
-                      <a onClick={() => this.openNav()}>
-                        <div className="bar-style">
-                          {" "}
-                          <i
-                            className="fa fa-bars sidebar-bar"
-                            aria-hidden="true"
-                          ></i>
-                        </div>
-                      </a>
-                    </div>
                   </div>
                   <div className="menu-right pull-right">
                     {/*Top Navigation Bar Component*/}
                     <NavBar />
-
                     <div>
                       <div className="icon-nav">
                         <ul>
-                          <li className="onhover-div mobile-search">
-                            <div>
-                              <img
-                                src={`${process.env.PUBLIC_URL}/assets/images/icon/search.png`}
-                                onClick={this.openSearch}
-                                className="img-fluid"
-                                alt=""
-                              />
-                              <i
-                                className="fa fa-search"
-                                onClick={this.openSearch}
-                              ></i>
-                            </div>
-                          </li>
                           <li className="onhover-div mobile-setting">
                             <div>
                               <img
@@ -133,68 +97,19 @@ class HeaderFive extends Component {
                                 className="img-fluid"
                                 alt=""
                               />
-                              <i className="fa fa-cog"></i>
                             </div>
+                            <i className="fa fa-cog"></i>
                             <div className="show-div setting">
                               <h6>language</h6>
                               <ul>
                                 <li>
-                                  <a
-                                    href={null}
-                                    onClick={() => this.changeLanguage("en")}
-                                  >
+                                  <a onClick={() => this.changeLanguage("en")}>
                                     English
                                   </a>{" "}
                                 </li>
                                 <li>
-                                  <a
-                                    href={null}
-                                    onClick={() => this.changeLanguage("fn")}
-                                  >
+                                  <a onClick={() => this.changeLanguage("la")}>
                                     French
-                                  </a>{" "}
-                                </li>
-                              </ul>
-                              <h6>currency</h6>
-                              <ul className="list-inline">
-                                <li>
-                                  <a
-                                    href={null}
-                                    onClick={() =>
-                                      this.props.changeCurrency("€")
-                                    }
-                                  >
-                                    euro
-                                  </a>{" "}
-                                </li>
-                                <li>
-                                  <a
-                                    href={null}
-                                    onClick={() =>
-                                      this.props.changeCurrency("₹")
-                                    }
-                                  >
-                                    rupees
-                                  </a>{" "}
-                                </li>
-                                <li>
-                                  <a
-                                    href={null}
-                                    onClick={() =>
-                                      this.props.changeCurrency("£")
-                                    }
-                                  >
-                                    pound
-                                  </a>{" "}
-                                </li>
-                                <li>
-                                  <a
-                                    href={null}
-                                    onClick={() =>
-                                      this.props.changeCurrency("$")
-                                    }
-                                  >
-                                    doller
                                   </a>{" "}
                                 </li>
                               </ul>
@@ -209,39 +124,6 @@ class HeaderFive extends Component {
             </div>
           </div>
         </header>
-
-        <div id="search-overlay" className="search-overlay">
-          <div>
-            <span
-              className="closebtn"
-              onClick={this.closeSearch}
-              title="Close Overlay"
-            >
-              ×
-            </span>
-            <div className="overlay-content">
-              <div className="container">
-                <div className="row">
-                  <div className="col-xl-12">
-                    <form>
-                      <div className="form-group">
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="exampleInputPassword1"
-                          placeholder="Search a Product"
-                        />
-                      </div>
-                      <button type="submit" className="btn btn-primary">
-                        <i className="fa fa-search"></i>
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     );
   }
