@@ -13,3 +13,32 @@ export const USER_INFO = gql`
     jwt
   }
 `;
+
+export const ROUTE_LISTS_INFO = gql`
+  fragment routeListsInfo on DepartureTime {
+    id
+    time
+    fare
+    isBookable
+    busType {
+      id
+      type
+    }
+    route {
+      id
+      routeName
+      destination
+    }
+  }
+`;
+
+export const ROUTE_INFO = gql`
+  fragment routeInfo on Route {
+    id
+    routeName
+    routeEngName
+    distance
+    departure
+    destination
+  }
+`;
