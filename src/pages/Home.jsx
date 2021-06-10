@@ -1,57 +1,87 @@
-import React from "react";
-import {
-  Row,
-  Col,
-  Card,
-  CardText,
-  CardBody,
-  CardTitle,
-  Container,
-  CardSubtitle,
-} from "reactstrap";
-import Slider from "react-slick";
+import React, { useRef } from "react";
+import { useLazyQuery } from "@apollo/client";
+import { Row, Col, Card, CardBody, CardTitle, Container } from "reactstrap";
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 import "../assets/scss/customs/Home.scss";
 import QueryRouteForm from "../components/Home/Form/QueryRouteForm";
+import QueryRouteTable from "../components/Home/Table";
+import { CHECK_DEPAERTURE_TIME } from "../graphql/queries";
+import LeftSlider from "../components/Home/LeftSlider";
+import "./style.scss";
+import { useStateValue } from "../context/queryRoute/provider";
 
 const Home = () => {
+  const tableRef = useRef(null);
+  const executeScroll = () => tableRef.current.scrollIntoView();
+  const [routeData, dispatch] = useStateValue();
+  const { departureDate, seatQty, route } = routeData;
+
+  const [checkQueryRoute, { data, loading }] = useLazyQuery(
+    CHECK_DEPAERTURE_TIME,
+    {
+      variables: { departureDate, seatQty, route },
+      fetchPolicy: "network-only",
+    }
+  );
+  if (data) {
+    executeScroll();
+  }
+
+  const renderTable = () => {
+    if (loading) {
+      return (
+        <div className="text-center">
+          <Loader type="Circles" color="#00BFFF" height={300} width={300} />
+        </div>
+      );
+    } else if (data !== "undefined") {
+      return (
+        <Card>
+          <CardBody>
+            <CardTitle className="text-center lao" tag="h5">
+              <b>ຕາຕະລາງລົດ ສາຍວຽງຈັນ-ປາກເຊ</b>
+            </CardTitle>
+            <QueryRouteTable data={data} />
+          </CardBody>
+        </Card>
+      );
+    }
+  };
+
   return (
-    <section className="p-0 head">
-      <Container>
-        <Row>
-          <Col md="6">
-            <Slider className="slide-1 home-slider">
-              <div>
-                <div className="home home1 text-center">
-                  <div className="container">
-                    <div className="row">
-                      <div className="col">
-                        <div className="slider-contain">
-                          <div>
-                            <h4>welcome to fashion</h4>
-                            <h1>men fashion</h1>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Slider>
-          </Col>
-          <Col md="6" className="lao p-2">
-            <Card>
-              <CardBody>
-                <CardTitle className="text-center" tag="h5">
-                  <b>ຄົ້ນຫາຕາຕະລາງລົດ</b>
-                </CardTitle>
-                <QueryRouteForm />
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </section>
+    <>
+      <section className="p-0 head">
+        <Container>
+          <Row>
+            <Col md="6" sm="6">
+              <LeftSlider />
+            </Col>
+            <Col md="6" sm="6" className="lao p-2">
+              <Card>
+                <CardBody>
+                  <CardTitle className="text-center" tag="h5">
+                    <b>ຄົ້ນຫາຕາຕະລາງລົດ</b>
+                  </CardTitle>
+                  <QueryRouteForm
+                    checkQueryRoute={checkQueryRoute}
+                    loading={loading}
+                  />
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+      <section ref={tableRef}>
+        <Container>
+          <Row>
+            <Col md="12">{renderTable()}</Col>
+          </Row>
+        </Container>
+      </section>
+    </>
   );
 };
 

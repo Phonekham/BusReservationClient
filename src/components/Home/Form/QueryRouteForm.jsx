@@ -1,34 +1,22 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaSearch } from "react-icons/fa";
 import { Button, Col, Form, FormGroup, Label } from "reactstrap";
 
 import SelectRoute from "../Select/SelectRoute";
-import { SET_QUERY_ROUTE } from "../../../constants/ActionTypes";
 import SelectSeatQty from "../Select/SelectSeatQty";
-import { useLazyQuery } from "@apollo/client";
+import { useStateValue } from "../../../context/queryRoute/provider";
+import { SET_QUERY_ROUTE } from "../../../context/types";
 
-import { CHECK_DEPAERTURE_TIME } from "../../../graphql/queries";
-
-const QueryRouteForm = () => {
-  const queryRouteState = useSelector((state) => state.queryRoute);
-  const dispatch = useDispatch();
-  const { departureDate, seatQty, route } = queryRouteState;
-
-  const [checkQueryRoute, { data, error, loading }] = useLazyQuery(
-    CHECK_DEPAERTURE_TIME,
-    {
-      variables: { departureDate, seatQty, route },
-    }
-  );
-
+const QueryRouteForm = ({ checkQueryRoute, loading }) => {
+  const [routeData, dispatch] = useStateValue();
+  const { departureDate, route, seatQty } = routeData;
   const handleSubmit = async (e) => {
     e.preventDefault();
     checkQueryRoute();
   };
-  console.log(data);
+
   return (
     <Form onSubmit={handleSubmit}>
       <FormGroup row>
@@ -50,7 +38,7 @@ const QueryRouteForm = () => {
             onChange={(date) =>
               dispatch({
                 type: SET_QUERY_ROUTE,
-                ...queryRouteState,
+                ...routeData,
                 departureDate: date,
               })
             }
@@ -67,7 +55,11 @@ const QueryRouteForm = () => {
         </Col>
       </FormGroup>
       <div className="text-center">
-        <Button color="info" type="submit">
+        <Button
+          color="info"
+          type="submit"
+          disabled={!departureDate || route === "" || seatQty === 0 || loading}
+        >
           <FaSearch size={16} color="white" /> ຄົ້ນຫາ
         </Button>
       </div>

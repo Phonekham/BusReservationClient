@@ -1,0 +1,2 @@
+export const SET_QUERY_ROUTE = "SET_QUERY_ROUTE";
+export const CLEAR_QUERY_ROUTE = "CLEAR_QUERY_ROUTE";

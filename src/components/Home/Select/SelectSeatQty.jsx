@@ -1,12 +1,11 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 
-import { SET_QUERY_ROUTE } from "../../../constants/ActionTypes";
+import { useStateValue } from "../../../context/queryRoute/provider";
+import { SET_QUERY_ROUTE } from "../../../context/types";
 
 const SelectSeatQty = () => {
-  const queryRouteState = useSelector((state) => state.queryRoute);
-  const dispatch = useDispatch();
+  const [routeData, dispatch] = useStateValue();
 
   const options = [
     { value: 1, label: 1 },
@@ -26,7 +25,7 @@ const SelectSeatQty = () => {
       onChange={(e) =>
         dispatch({
           type: SET_QUERY_ROUTE,
-          ...queryRouteState,
+          ...routeData,
           seatQty: parseInt(e.value),
         })
       }

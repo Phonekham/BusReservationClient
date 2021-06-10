@@ -1,16 +1,14 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useQuery } from "@apollo/client";
 import Select from "react-select";
 
 import { QUERY_ROUTES } from "../../../graphql/queries";
-import { SET_QUERY_ROUTE } from "../../../constants/ActionTypes";
+import { useStateValue } from "../../../context/queryRoute/provider";
+import { SET_QUERY_ROUTE } from "../../../context/types";
 
 const SelectRoute = () => {
   const { data } = useQuery(QUERY_ROUTES);
-
-  const queryRouteState = useSelector((state) => state.queryRoute);
-  const dispatch = useDispatch();
+  const [routeData, dispatch] = useStateValue();
 
   const options =
     data &&
@@ -24,7 +22,7 @@ const SelectRoute = () => {
       onChange={(e) =>
         dispatch({
           type: SET_QUERY_ROUTE,
-          ...queryRouteState,
+          ...routeData,
           route: e.value,
         })
       }
