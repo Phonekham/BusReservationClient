@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "reactstrap";
+import { Button, Table } from "reactstrap";
 
 const QueryRouteTable = ({ data }) => {
   return (
@@ -11,6 +11,7 @@ const QueryRouteTable = ({ data }) => {
           <th>ປະເພດລົດ</th>
           <th>ຄ່າໂດຍສານ</th>
           <th className="route">ສາຍທາງ</th>
+          <th>ຈອງປີ້</th>
         </tr>
       </thead>
       <tbody>
@@ -24,6 +25,11 @@ const QueryRouteTable = ({ data }) => {
               <td>{route.busType.type}</td>
               <td>{route.fare}</td>
               <td className="route">{route.route.routeName}</td>
+              <td>
+                <Button color="info" type="button">
+                  ເລືອກບ່ອນນັ່ງ
+                </Button>
+              </td>
             </tr>
           ))}
       </tbody>

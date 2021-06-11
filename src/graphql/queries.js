@@ -23,3 +23,12 @@ export const QUERY_ROUTES = gql`
   }
   ${ROUTE_INFO}
 `;
+
+export const QUERY_ROUTE = gql`
+  query queryRoute($id: ID!) {
+    route(id: $id) {
+      ...routeInfo
+    }
+  }
+  ${ROUTE_INFO}
+`;

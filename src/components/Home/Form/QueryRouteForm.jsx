@@ -35,6 +35,9 @@ const QueryRouteForm = ({ checkQueryRoute, loading }) => {
           <DatePicker
             className="form-control"
             selected={departureDate && new Date(departureDate)}
+            minDate={new Date()}
+            dateFormat="dd/MM/yyyy"
+            placeholderText="ເລືອກວັນທີ່ອອກເດີນທາງ"
             onChange={(date) =>
               dispatch({
                 type: SET_QUERY_ROUTE,
@@ -42,7 +45,6 @@ const QueryRouteForm = ({ checkQueryRoute, loading }) => {
                 departureDate: date,
               })
             }
-            dateFormat="dd/MM/yyyy"
           />
         </Col>
       </FormGroup>

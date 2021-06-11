@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { useLazyQuery } from "@apollo/client";
+import { useLazyQuery, useQuery } from "@apollo/client";
 import { Row, Col, Card, CardBody, CardTitle, Container } from "reactstrap";
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -7,7 +7,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "../assets/scss/customs/Home.scss";
 import QueryRouteForm from "../components/Home/Form/QueryRouteForm";
 import QueryRouteTable from "../components/Home/Table";
-import { CHECK_DEPAERTURE_TIME } from "../graphql/queries";
+import { CHECK_DEPAERTURE_TIME, QUERY_ROUTE } from "../graphql/queries";
 import LeftSlider from "../components/Home/LeftSlider";
 import "./style.scss";
 import { useStateValue } from "../context/queryRoute/provider";
@@ -15,8 +15,12 @@ import { useStateValue } from "../context/queryRoute/provider";
 const Home = () => {
   const tableRef = useRef(null);
   const executeScroll = () => tableRef.current.scrollIntoView();
-  const [routeData, dispatch] = useStateValue();
+  const [routeData] = useStateValue();
   const { departureDate, seatQty, route } = routeData;
+
+  const { data: theRoute } = useQuery(QUERY_ROUTE, {
+    variables: { id: route && route },
+  });
 
   const [checkQueryRoute, { data, loading }] = useLazyQuery(
     CHECK_DEPAERTURE_TIME,
@@ -26,7 +30,7 @@ const Home = () => {
     }
   );
   if (data) {
-    executeScroll();
+    executeScroll({ behavior: "smooth" });
   }
 
   const renderTable = () => {
@@ -36,12 +40,12 @@ const Home = () => {
           <Loader type="Circles" color="#00BFFF" height={300} width={300} />
         </div>
       );
-    } else if (data !== "undefined") {
+    } else if (data) {
       return (
         <Card>
           <CardBody>
             <CardTitle className="text-center lao" tag="h5">
-              <b>ຕາຕະລາງລົດ ສາຍວຽງຈັນ-ປາກເຊ</b>
+              <b>ຕາຕະລາງລົດ {theRoute && theRoute.route.routeName}</b>
             </CardTitle>
             <QueryRouteTable data={data} />
           </CardBody>
