@@ -1,0 +1,52 @@
+.front-indicator {
+  margin: 5px 28px 15px 41px;
+  background-color: #dedede;
+  color: #000000;
+  text-align: center;
+  padding: 7px 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+div.seatCharts-cell {
+  color: #182c4e;
+  height: 32px;
+  width: 32px;
+  line-height: 31px;
+}
+div.seatCharts-seat {
+  color: #ffffff;
+  cursor: pointer;
+}
+div.seatCharts-row {
+  height: 35px;
+}
+div.seatCharts-seat.available {
+  background-color: #969696;
+}
+div.seatCharts-seat.available.first-class {
+  background-color: #2483f7;
+}
+
+div.seatCharts-seat.selected {
+  background-color: #307701;
+}
+div.seatCharts-seat.unavailable {
+  background-color: #980303;
+}
+div.seatCharts-container {
+  border-right: 1px solid #adadad;
+  width: 50%;
+  float: left;
+}
+div.seatCharts-legend {
+  padding-left: 0px;
+}
+ul.seatCharts-legendList {
+  padding-left: 0px;
+}
+span.seatCharts-legendDescription {
+  margin-left: 5px;
+  line-height: 35px;
+  font-size: 14px;
+}

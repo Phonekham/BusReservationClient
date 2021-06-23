@@ -1,8 +1,8 @@
 import React from "react";
 import Select from "react-select";
 
-import { useStateValue } from "../../../context/queryRoute/provider";
-import { SET_QUERY_ROUTE } from "../../../context/types";
+import { useStateValue } from "../../context/queryRoute/provider";
+import { SET_QUERY_ROUTE } from "../../context/types";
 
 const SelectSeatQty = () => {
   const [routeData, dispatch] = useStateValue();

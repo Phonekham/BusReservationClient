@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Button, Table } from "reactstrap";
 
 const QueryRouteTable = ({ data }) => {
@@ -26,9 +27,11 @@ const QueryRouteTable = ({ data }) => {
               <td>{route.fare}</td>
               <td className="route">{route.route.routeName}</td>
               <td>
-                <Button color="info" type="button">
-                  ເລືອກບ່ອນນັ່ງ
-                </Button>
+                <Link to={{ pathname: "/booking", state: route }}>
+                  <Button color="info" type="button">
+                    ເລືອກບ່ອນນັ່ງ
+                  </Button>
+                </Link>
               </td>
             </tr>
           ))}

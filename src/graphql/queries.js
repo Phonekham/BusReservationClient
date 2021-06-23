@@ -32,3 +32,16 @@ export const QUERY_ROUTE = gql`
   }
   ${ROUTE_INFO}
 `;
+
+export const QUERY_SEATS = gql`
+  query seats($busType: ID!) {
+    seats(busType: $busType) {
+      id
+      seatNo
+      busType {
+        id
+        type
+      }
+    }
+  }
+`;

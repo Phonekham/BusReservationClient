@@ -1,9 +1,9 @@
-html {
-  scroll-behavior: smooth;
-}
-.head {
-  background-color: lightblue;
-}
-.query-route-form {
-  background-color: lightcyan;
+.home {
+  background: linear-gradient(90deg, #095dd7, #70b8ff),
+    url("../../images/background.jpg");
+  min-height: 100vh;
+  background-blend-mode: multiply;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }

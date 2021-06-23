@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { IntlActions, withTranslate } from "react-redux-multilingual";
+import { List, ListInlineItem } from "reactstrap";
 import Pace from "react-pace-progress";
 
 // Import custom components
@@ -103,6 +104,20 @@ class HeaderFive extends Component {
                             <div className="show-div setting lao">
                               <h6> {translate("language")}</h6>
                               <ul>
+                                {/* <List type="inline">
+                                  <ListInlineItem
+                                    style={{ cursor: "pointer" }}
+                                    onClick={() => this.changeLanguage("en")}
+                                  >
+                                    {translate("en_lang")}
+                                  </ListInlineItem>
+                                  <ListInlineItem
+                                    style={{ cursor: "pointer" }}
+                                    onClick={() => this.changeLanguage("la")}
+                                  >
+                                    {translate("lao_lang")}
+                                  </ListInlineItem>
+                                </List> */}
                                 <li>
                                   <a onClick={() => this.changeLanguage("en")}>
                                     {translate("en_lang")}

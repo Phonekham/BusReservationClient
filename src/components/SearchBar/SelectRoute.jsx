@@ -2,9 +2,9 @@ import React from "react";
 import { useQuery } from "@apollo/client";
 import Select from "react-select";
 
-import { QUERY_ROUTES } from "../../../graphql/queries";
-import { useStateValue } from "../../../context/queryRoute/provider";
-import { SET_QUERY_ROUTE } from "../../../context/types";
+import { QUERY_ROUTES } from "../../graphql/queries";
+import { useStateValue } from "../../context/queryRoute/provider";
+import { SET_QUERY_ROUTE } from "../../context/types";
 
 const SelectRoute = () => {
   const { data } = useQuery(QUERY_ROUTES);
