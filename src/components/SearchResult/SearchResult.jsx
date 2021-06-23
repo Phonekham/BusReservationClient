@@ -1,10 +1,17 @@
 import React from "react";
 import { Container } from "reactstrap";
 
-const SearchResult = () => {
+import RouteCollapse from "./RouteCollapse";
+
+const SearchResult = ({ data }) => {
   return (
     <div className="search-results py-5">
-      <Container>results</Container>
+      <Container>
+        {data &&
+          data.checkDepartureTime.map((route, i) => (
+            <RouteCollapse data={route} key={route.id} />
+          ))}
+      </Container>
     </div>
   );
 };

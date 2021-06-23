@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Button,
   Card,
@@ -10,19 +10,15 @@ import {
   Label,
   Row,
 } from "reactstrap";
+
 import { useStateValue } from "../../context/queryRoute/provider";
 import { SET_QUERY_ROUTE } from "../../context/types";
-
 import SelectRoute from "./SelectRoute";
 import SelectSeatQty from "./SelectSeatQty";
 
-const SearchBar = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
+const SearchBar = ({ handleSubmit }) => {
   const [routeData, dispatch] = useStateValue();
-  console.log(routeData);
+  // TODO find the way to set min date
   return (
     <Card className="lao p-3">
       <CardBody>
