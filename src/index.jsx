@@ -13,21 +13,29 @@ import translations from "./constants/translations";
 import App from "./App";
 import { client } from "./ApolloProvider";
 import { RouteProvider } from "./context/queryRoute/provider";
-import reducer, { initialState } from "./context/queryRoute/reducer";
+import { SeatProvider } from "./context/seat/provider";
+import routeReducer, {
+  initialState as routeInitialState,
+} from "./context/queryRoute/reducer";
+import seatReducer, {
+  initialState as seatInitialState,
+} from "./context/seat/reducer";
 
 class Root extends React.Component {
   render() {
     return (
       <ApolloProvider client={client}>
         <Provider store={store}>
-          <RouteProvider routeData={initialState} reducer={reducer}>
-            <IntlProvider translations={translations} locale="en">
-              <BrowserRouter basename={"/"}>
-                <ScrollContext>
-                  <App />
-                </ScrollContext>
-              </BrowserRouter>
-            </IntlProvider>
+          <RouteProvider routeData={routeInitialState} reducer={routeReducer}>
+            <SeatProvider seatData={seatInitialState} reducer={seatReducer}>
+              <IntlProvider translations={translations} locale="en">
+                <BrowserRouter basename={"/"}>
+                  <ScrollContext>
+                    <App />
+                  </ScrollContext>
+                </BrowserRouter>
+              </IntlProvider>
+            </SeatProvider>
           </RouteProvider>
         </Provider>
       </ApolloProvider>

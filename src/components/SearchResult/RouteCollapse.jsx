@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useQuery } from "@apollo/client";
+import { RiSteering2Fill } from "react-icons/ri";
 import {
   Collapse,
   Button,
@@ -9,31 +11,31 @@ import {
   Row,
 } from "reactstrap";
 
+import "../../assets/scss/customs/SearchResult.scss";
+
+import { QUERY_SEATS } from "../../graphql/queries";
+import Seat from "./Seat";
+import SeatInfo from "./SeatInfo";
+import RouteInfo from "./RouteInfo";
+import SeatSymbol from "./SeatSymbol";
+
 const RouteCollapse = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
   const { busType, fare, route, time } = data;
 
-  console.log(data);
+  const { data: seats } = useQuery(QUERY_SEATS, {
+    variables: { busType: busType.id },
+  });
+
   return (
     <Card className="m-2 lao">
       <CardTitle className="text-center mt-2" tag="h5">
         {route.routeName}
       </CardTitle>
       <Row>
-        <Col sm="2">
-          <div>wew</div>
-        </Col>
-        <Col sm="2">
-          <div>wew</div>
-        </Col>
-        <Col sm="2">
-          <div>wew</div>
-        </Col>
-        <Col sm="2">
-          <div>wew</div>
-        </Col>
+        <RouteInfo fare={fare} busType={busType} time={time} />
         <Col sm="2">
           <div className="m-2">
             <Button
@@ -49,10 +51,35 @@ const RouteCollapse = ({ data }) => {
       <Collapse isOpen={isOpen}>
         <Card>
           <CardBody>
-            {route.routeName} Anim pariatur cliche reprehenderit, enim eiusmod
-            high life accusamus terry richardson ad squid. Nihil anim keffiyeh
-            helvetica, craft beer labore wes anderson cred nesciunt sapiente ea
-            proident.
+            <div className="d-flex seat-symbols py-4 mb-2">
+              <SeatSymbol color="green" status="ຍັງຫວ່າງ" />
+              <SeatSymbol color="red" status="ຖືກຈອງແລ້ວ" />
+            </div>
+            <div className="row seat-details">
+              <div className="col-md-4 mr-md-5">
+                <div className="seat-plan">
+                  <div className="diver-area text-left mx-3 pb-5">
+                    <RiSteering2Fill />
+                  </div>
+                  <div
+                    className="seats"
+                    style={{ display: "flex", justifyContent: "center" }}
+                  >
+                    <Row>
+                      {seats &&
+                        seats.seats.map((seat) => (
+                          <Col md="3" sm="3" xs="3">
+                            <Seat key={seat.id} seat={seat} />
+                          </Col>
+                        ))}
+                    </Row>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-6">
+                <SeatInfo />
+              </div>
+            </div>
           </CardBody>
         </Card>
       </Collapse>
