@@ -10,7 +10,7 @@ import { useStateValue } from "../context/queryRoute/provider";
 import { CHECK_DEPAERTURE_TIME } from "../graphql/queries";
 
 const Home = () => {
-  const [routeData, dispatch] = useStateValue();
+  const [routeData] = useStateValue();
   const { departureDate, seatQty, route } = routeData;
 
   const [checkQueryRoute, { data, loading }] = useLazyQuery(
