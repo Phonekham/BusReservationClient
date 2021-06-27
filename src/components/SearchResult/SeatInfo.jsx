@@ -1,24 +1,30 @@
 import React from "react";
 
+import { useStateValue } from "../../context/seat/provider";
+
 const SeatInfo = () => {
+  const [seatData] = useStateValue();
+  const { selectedSeat } = seatData;
+
   return (
     <div>
-      <h4 className="text-danger text-uppercase">ລາຍລະອຽດຍ່ອນນັ່ງ</h4>
+      <h3 className="text-center">ລາຍລະອຽດບ່ອນນັ່ງ</h3>
       <div className="seat-info">
         <table className="table">
           <thead>
             <tr>
-              <th>Seat</th>
-              <th>Class</th>
-              <th>Fare</th>
+              <th>ເບີບ່ອນັ່ງ</th>
+              <th>ຊັ້ນ</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>seatno</td>
-              <td>class</td>
-              <td>500000</td>
-            </tr>
+            {selectedSeat &&
+              selectedSeat.map((seat) => (
+                <tr>
+                  <td>{seat.seatNo}</td>
+                  <td>25000</td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

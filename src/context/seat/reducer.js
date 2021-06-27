@@ -18,7 +18,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         selectedSeat: state.selectedSeat.filter(
-          (item) => item !== action.removeId
+          (item) => item.id !== action.removeId
         ),
       };
     case CLEAR_SELECTED_SEAT:

@@ -52,8 +52,9 @@ const RouteCollapse = ({ data }) => {
         <Card>
           <CardBody>
             <div className="d-flex seat-symbols py-4 mb-2">
-              <SeatSymbol color="green" status="ຍັງຫວ່າງ" />
+              <SeatSymbol color="grey" status="ຍັງຫວ່າງ" />
               <SeatSymbol color="red" status="ຖືກຈອງແລ້ວ" />
+              <SeatSymbol color="green" status="ກຳລັງເລືອກ" />
             </div>
             <div className="row seat-details">
               <div className="col-md-4 mr-md-5">

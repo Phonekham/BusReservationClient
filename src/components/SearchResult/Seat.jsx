@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { MdEventSeat } from "react-icons/md";
 
 import "../../assets/scss/customs/seat.scss";
@@ -11,8 +11,8 @@ const Seat = ({ seat }) => {
   let selected;
 
   if (selectedSeat.length >= 1) {
-    selected = selectedSeat.includes(seat.id);
-    console.log(selected);
+    const ids = selectedSeat.map((s) => s.id);
+    selected = ids.includes(seat.id);
   }
 
   return (
@@ -26,7 +26,7 @@ const Seat = ({ seat }) => {
             dispatch({
               type: SET_SELECTED_SEAT,
               ...seatData,
-              selectedSeat: seat.id,
+              selectedSeat: seat,
             });
           } else {
             dispatch({
