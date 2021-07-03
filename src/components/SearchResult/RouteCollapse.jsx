@@ -23,7 +23,7 @@ const RouteCollapse = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
-  const { busType, fare, route, time } = data;
+  const { id, busType, fare, route, time } = data;
 
   const { data: seats } = useQuery(QUERY_SEATS, {
     variables: { busType: busType.id },
@@ -35,7 +35,7 @@ const RouteCollapse = ({ data }) => {
         {route.routeName}
       </CardTitle>
       <Row>
-        <RouteInfo fare={fare} busType={busType} time={time} />
+        <RouteInfo key={id} fare={fare} busType={busType} time={time} />
         <Col sm="2">
           <div className="m-2">
             <Button
