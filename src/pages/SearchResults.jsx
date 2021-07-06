@@ -5,6 +5,7 @@ import SearchResult from "../components/SearchResult/SearchResult";
 
 const SearchResults = (props) => {
   const { state } = props.location;
+
   return (
     <div>
       <SearchBar />

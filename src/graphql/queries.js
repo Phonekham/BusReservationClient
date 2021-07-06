@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-import { ROUTE_INFO, ROUTE_LISTS_INFO } from "./fragments";
+import { ROUTE_INFO, ROUTE_LISTS_INFO, SEAT_INFO } from "./fragments";
 
 export const CHECK_DEPAERTURE_TIME = gql`
   query checkDepartureTime($departureDate: Date!, $route: ID!, $seatQty: Int!) {
@@ -36,12 +36,17 @@ export const QUERY_ROUTE = gql`
 export const QUERY_SEATS = gql`
   query seats($busType: ID!) {
     seats(busType: $busType) {
-      id
-      seatNo
-      busType {
-        id
-        type
-      }
+      ...seatInfo
     }
   }
+  ${SEAT_INFO}
+`;
+
+export const QUERY_SEATS2 = gql`
+  query seats2($busType: ID!) {
+    seats2(busType: $busType) {
+      ...seatInfo
+    }
+  }
+  ${SEAT_INFO}
 `;

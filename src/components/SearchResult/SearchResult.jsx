@@ -8,7 +8,7 @@ const SearchResult = ({ data }) => {
     <div className="search-results py-5">
       <Container>
         {data &&
-          data.checkDepartureTime.map((route, i) => (
+          data.checkDepartureTime.map((route) => (
             <RouteCollapse data={route} key={route.id} />
           ))}
       </Container>

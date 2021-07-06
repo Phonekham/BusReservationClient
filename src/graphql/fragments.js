@@ -23,6 +23,7 @@ export const ROUTE_LISTS_INFO = gql`
     busType {
       id
       type
+      floorType
     }
     route {
       id
@@ -40,5 +41,17 @@ export const ROUTE_INFO = gql`
     distance
     departure
     destination
+  }
+`;
+
+export const SEAT_INFO = gql`
+  fragment seatInfo on Seat {
+    id
+    seatNo
+    busType {
+      id
+      type
+    }
+    floor
   }
 `;

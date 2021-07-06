@@ -1,10 +1,12 @@
 import {
   CLEAR_SELECTED_SEAT,
   REMOVE_SELECTED_SEAT,
+  SET_SELECTED_ROUTE,
   SET_SELECTED_SEAT,
 } from "../types";
 export const initialState = {
   selectedSeat: [],
+  route: "",
 };
 
 const reducer = (state, action) => {
@@ -13,6 +15,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         selectedSeat: [...state.selectedSeat, action.selectedSeat],
+      };
+    case SET_SELECTED_ROUTE:
+      return {
+        ...state,
+        route: action.route,
       };
     case REMOVE_SELECTED_SEAT:
       return {
