@@ -7,6 +7,8 @@ import Vegetables from "./components/layouts/vegetables/main";
 import Home from "./pages/Home";
 import Booking from "./pages/Booking";
 import SearchResults from "./pages/SearchResults";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
 
 const App = () => {
   return (
@@ -15,6 +17,10 @@ const App = () => {
         <Route exact path="/" component={Home} />
         <Route exact path="/search-results" component={SearchResults} />
         <Route path="/booking" component={Booking} />
+
+        {/* Auth Route */}
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
       </Layout>
     </Switch>
   );

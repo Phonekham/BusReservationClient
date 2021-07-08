@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const USER_INFO = gql`
-  fragment userInfo on Route {
+  fragment userInfo on MemberAuthData {
     user {
       id
       username
@@ -53,5 +53,16 @@ export const SEAT_INFO = gql`
       type
     }
     floor
+  }
+`;
+
+export const MEMBER_INFO = gql`
+  fragment memberInfo on Member {
+    id
+    username
+    email
+    phone
+    firstname
+    lastname
   }
 `;

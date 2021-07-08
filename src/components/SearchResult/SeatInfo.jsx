@@ -1,10 +1,15 @@
 import React from "react";
+import { Button } from "reactstrap";
 
 import { useStateValue } from "../../context/seat/provider";
 
 const SeatInfo = () => {
   const [seatData] = useStateValue();
   const { selectedSeat } = seatData;
+
+  const handleContinue = () => {
+    console.log("conti");
+  };
 
   return (
     <div>
@@ -27,6 +32,9 @@ const SeatInfo = () => {
               ))}
           </tbody>
         </table>
+        <Button color="primary" onClick={() => handleContinue()}>
+          ດຳເນີນການຕໍ່
+        </Button>
       </div>
     </div>
   );

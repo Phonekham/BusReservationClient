@@ -5,6 +5,8 @@ import { BrowserRouter } from "react-router-dom";
 import { ScrollContext } from "react-router-scroll-4";
 import { IntlProvider } from "react-redux-multilingual";
 import { ApolloProvider } from "@apollo/client";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Import custom components
 import "./index.scss";
@@ -33,6 +35,7 @@ class Root extends React.Component {
                   <ScrollContext>
                     <App />
                   </ScrollContext>
+                  <ToastContainer newestOnTop />
                 </BrowserRouter>
               </IntlProvider>
             </SeatProvider>

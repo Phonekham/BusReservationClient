@@ -1,5 +1,7 @@
 export const SET_QUERY_ROUTE = "SET_QUERY_ROUTE";
 export const CLEAR_QUERY_ROUTE = "CLEAR_QUERY_ROUTE";
+export const SET_USER = "SET_USER";
+export const CLEAR_USER = "CLEAR_USER";
 // Get Products
 export const FETCH_PRODUCTS_BEGIN = "FETCH_PRODUCTS_BEGIN";
 export const RECEIVE_PRODUCTS = "RECEIVE_PRODUCTS";

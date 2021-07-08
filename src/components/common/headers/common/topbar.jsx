@@ -24,10 +24,10 @@ class TopBarDark extends Component {
                   <i className="fa fa-user" aria-hidden="true"></i> My Account
                   <ul className="onhover-show-div">
                     <li>
-                      <Link to="login">Logins</Link>
+                      <Link to="/login">Logins</Link>
                     </li>
                     <li>
-                      <Link to="register" data-lng="es">
+                      <Link to="/register" data-lng="es">
                         Register
                       </Link>
                     </li>
