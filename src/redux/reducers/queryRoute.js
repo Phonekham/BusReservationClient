@@ -1,4 +1,7 @@
-import { SET_QUERY_ROUTE, CLEAR_QUERY_ROUTE } from "../constants/ActionTypes";
+import {
+  SET_QUERY_ROUTE,
+  CLEAR_QUERY_ROUTE,
+} from "../../constants/ActionTypes";
 
 const initialState = {
   route: "",

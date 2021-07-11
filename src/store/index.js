@@ -4,7 +4,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunkMiddleware from "redux-thunk";
 
 // Import custom components
-import rootReducer from "../reducers";
+import rootReducer from "../redux/reducers";
 
 function saveToLocalStorage(state) {
   try {

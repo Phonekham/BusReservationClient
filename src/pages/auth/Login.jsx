@@ -5,8 +5,10 @@ import { Link, useHistory } from "react-router-dom";
 import { Form, Alert } from "reactstrap";
 
 import { LOGIN_MEMBER } from "../../graphql/mutations";
+import { handleLogin } from "../../redux/actions/auth";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const [userInfo, setUserInfo] = useState({
     username: "",
@@ -25,7 +27,7 @@ const Login = () => {
     onCompleted: (data) => {
       if (data) {
         localStorage.setItem("jwtTokenBRSClient", data.loginMember.jwt);
-        // dispatch(handleLogin(data.loginEmployee.user));
+        dispatch(handleLogin(data.loginMember.user));
         //   TODO push to user profile
         history.push("/");
       }
