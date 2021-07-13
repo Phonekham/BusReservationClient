@@ -1,10 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import { handleLogout } from "../../../../redux/actions/auth";
 
 const TopBarDark = () => {
+  const dispatch = useDispatch();
   const userState = useSelector((state) => state.auth);
   const { userData } = userState;
+
+  const logout = () => {
+    dispatch(handleLogout());
+  };
 
   return (
     <div className="top-header top-header-dark3">
@@ -26,7 +33,7 @@ const TopBarDark = () => {
               <li className="onhover-dropdown mobile-account">
                 <i className="fa fa-user" aria-hidden="true"></i> My Account
                 <ul className="onhover-show-div">
-                  {!userState ? (
+                  {!userData ? (
                     <>
                       <li>
                         <Link to="/login">Logins</Link>
@@ -41,7 +48,7 @@ const TopBarDark = () => {
                         <Link to="/login">Profile</Link>
                       </li>
                       <li>
-                        <Link to="/login">Logout</Link>
+                        <a onClick={logout}>Logout</a>
                       </li>
                     </>
                   )}

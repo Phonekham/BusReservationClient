@@ -13,6 +13,7 @@ export const handleLogin = (data) => {
 // ** Handle User Logout
 export const handleLogout = () => {
   return (dispatch) => {
+    localStorage.removeItem("jwtTokenBRSClient");
     dispatch({
       type: LOGOUT,
     });
