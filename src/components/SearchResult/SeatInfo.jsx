@@ -1,10 +1,12 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Button } from "reactstrap";
 
 import { useStateValue } from "../../context/seat/provider";
 
 const SeatInfo = () => {
+  const history = useHistory();
   const authState = useSelector((state) => state.auth);
   const { userData } = authState;
 
@@ -15,7 +17,7 @@ const SeatInfo = () => {
     if (!userData) {
       alert("ກາລຸນາເຂົ້າສູ່ລະບົບ");
     } else {
-      alert("your loggin");
+      history.push("/booking");
     }
   };
 

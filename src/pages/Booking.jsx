@@ -1,6 +1,4 @@
 import React from "react";
-import { useQuery } from "@apollo/client";
-import { MdEventSeat } from "react-icons/md";
 import {
   Row,
   Col,
@@ -9,21 +7,13 @@ import {
   CardTitle,
   Container,
   CardHeader,
+  CardText,
+  Button,
+  DropdownItem,
 } from "reactstrap";
-
-import "../assets/scss/customs/booking.scss";
-import { QUERY_SEATS } from "../graphql/queries";
-import Seat from "../components/Booking/Seat";
-import SeatMap from "../components/Booking/SeatMap";
-import SeatChart from "../components/Booking/SeatChart";
+import PassengerForm from "../components/Booking/Form/PassengerForm";
 
 const Booking = (props) => {
-  const { busType, route, time } = props.location.state;
-  console.log(props.location.state);
-  const { data } = useQuery(QUERY_SEATS, {
-    variables: { busType: busType.id },
-  });
-
   return (
     <>
       <Container>
@@ -31,22 +21,40 @@ const Booking = (props) => {
           <Col md="12" className="lao p-2">
             <Card>
               <CardBody>
-                <CardTitle className="text-center" tag="h5">
-                  <b>{route.routeName}</b> ເວລາ {time}
-                  <p></p>
-                </CardTitle>
                 <Row>
-                  <Col md="12">
-                    <Card>
+                  <Col md="8">
+                    <Card className="mt-2">
+                      <CardHeader className="lao bg-primary text-white">
+                        ລາຍລະອຽດຜູ້ໂດຍສານ
+                      </CardHeader>
                       <CardBody>
-                        <SeatChart />
-                        {/* {data &&
-                            data.seats.map((seat) => (
-                              <div key={seat.id} className="the-seat">
-                                <MdEventSeat color="black" size="25" />
-                                <p className="mt-2">{seat.seatNo}</p>
-                              </div>
-                            ))} */}
+                        <PassengerForm />
+                      </CardBody>
+                    </Card>
+                    <Card className="mt-2">
+                      <CardHeader className="lao bg-success text-white">
+                        ລາຍລະອຽດຜການຊຳລະເງິນ
+                      </CardHeader>
+                      <CardBody>ຍັິທຳືະ</CardBody>
+                    </Card>
+                  </Col>
+                  <Col md="4">
+                    <Card className="mt-2">
+                      <CardHeader className="lao bg-info text-white">
+                        ລາຍລະອຽດການເດີນທາງ
+                      </CardHeader>
+                      <CardBody>
+                        <CardTitle tag="h5">ສາຍທາງ</CardTitle>
+                        <CardText>ວຽງຈັນ-ປາກເຊ</CardText>
+                        <DropdownItem divider />
+                        <CardTitle tag="h5">ເວລາອອກເດີນທາງ</CardTitle>
+                        <CardText>8:00</CardText>
+                        <DropdownItem divider />
+                        <CardTitle tag="h5">ເບີບ່ອນນັ່ງ</CardTitle>
+                        <CardText>A4</CardText>
+                        <DropdownItem divider />
+                        <CardTitle tag="h5">ລາຄາປີ້</CardTitle>
+                        <CardText>180,000 ກີບ</CardText>
                       </CardBody>
                     </Card>
                   </Col>
@@ -55,7 +63,6 @@ const Booking = (props) => {
             </Card>
           </Col>
         </Row>
-        {/* <Seat /> */}
       </Container>
     </>
   );
