@@ -1,28 +1,5 @@
-.seat-container {
-  display: flex;
-  > div {
-    margin: 5px;
-    padding: 10px;
-    cursor: pointer;
-    text-align: center;
-  }
-}
-
-.seats {
+.summaryText {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-}
-
-.the-seat {
-  display: flex;
-  flex: 0 0 14.28571428571429%;
-  padding: 10px;
-  position: relative;
-  flex-direction: column;
-  &:nth-child(2) {
-    margin-right: 14.28571428571429%;
-    font-size: 50px;
-  }
+  justify-content: space-between;
 }

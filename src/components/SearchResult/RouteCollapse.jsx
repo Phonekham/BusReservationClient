@@ -35,7 +35,7 @@ const RouteCollapse = ({ data }) => {
   const { data: seats2 } = useQuery(QUERY_SEATS2, {
     variables: { busType: busType.id },
   });
-
+  console.log(data);
   return (
     <Card className="m-2 lao">
       <CardTitle className="text-center mt-2" tag="h5">
@@ -106,7 +106,7 @@ const RouteCollapse = ({ data }) => {
                 </Col>
               )}
               <Col md="4">
-                {seatData.route === id && <SeatInfo routeId={id} />}
+                {seatData.route === id && <SeatInfo routeId={id} data={data} />}
               </Col>
             </Row>
           </CardBody>

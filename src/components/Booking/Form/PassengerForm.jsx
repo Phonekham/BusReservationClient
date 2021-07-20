@@ -1,7 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Col, Form, FormGroup, Input, Label } from "reactstrap";
 
 const PassengerForm = () => {
+  const authState = useSelector((state) => state.auth);
+  const { email, phone, firstname } = authState.userData;
   return (
     <Form>
       <FormGroup row>
@@ -9,7 +12,7 @@ const PassengerForm = () => {
           ຊື່ເຕັມ
         </Label>
         <Col sm={10}>
-          <Input type="text" name="fullname" id="name" />
+          <Input type="text" name="fullname" id="name" value={firstname} />
         </Col>
       </FormGroup>
       <FormGroup row>
@@ -17,7 +20,7 @@ const PassengerForm = () => {
           ເບີໂທ
         </Label>
         <Col sm={10}>
-          <Input type="text" name="phone" id="phone" />
+          <Input type="text" name="phone" id="phone" value={phone} />
         </Col>
       </FormGroup>
       <FormGroup row>
@@ -25,7 +28,7 @@ const PassengerForm = () => {
           ອີເມວ
         </Label>
         <Col sm={10}>
-          <Input type="email" name="email" id="email" />
+          <Input type="email" name="email" id="email" value={email} />
         </Col>
       </FormGroup>
     </Form>

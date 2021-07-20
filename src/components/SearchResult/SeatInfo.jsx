@@ -5,7 +5,7 @@ import { Button } from "reactstrap";
 
 import { useStateValue } from "../../context/seat/provider";
 
-const SeatInfo = () => {
+const SeatInfo = ({ data }) => {
   const history = useHistory();
   const authState = useSelector((state) => state.auth);
   const { userData } = authState;
@@ -17,7 +17,7 @@ const SeatInfo = () => {
     if (!userData) {
       alert("ກາລຸນາເຂົ້າສູ່ລະບົບ");
     } else {
-      history.push("/booking");
+      history.push({ pathname: "/booking", state: data });
     }
   };
 

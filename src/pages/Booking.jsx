@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { FiUserCheck, FiCreditCard } from "react-icons/fi";
+import { BiBus } from "react-icons/bi";
+import { FaMoneyCheckAlt } from "react-icons/fa";
 import {
   Row,
   Col,
@@ -8,12 +11,22 @@ import {
   Container,
   CardHeader,
   CardText,
-  Button,
   DropdownItem,
 } from "reactstrap";
+
 import PassengerForm from "../components/Booking/Form/PassengerForm";
+import { useStateValue } from "../context/seat/provider";
+import { numberWithCommas } from "../utils/formatNumber";
+import PaymentTab from "../components/Booking/Tabs/PaymentTab";
+import "../assets/scss/customs/booking.scss";
 
 const Booking = (props) => {
+  const [seatData] = useStateValue();
+  const { selectedSeat } = seatData;
+  const { state } = props.location;
+  const { busType, fare, route, time } = state;
+  const [insurance, setInsurance] = useState(true);
+
   return (
     <>
       <Container>
@@ -25,6 +38,7 @@ const Booking = (props) => {
                   <Col md="8">
                     <Card className="mt-2">
                       <CardHeader className="lao bg-primary text-white">
+                        <FiUserCheck size={15} color="white" />{" "}
                         ລາຍລະອຽດຜູ້ໂດຍສານ
                       </CardHeader>
                       <CardBody>
@@ -33,28 +47,60 @@ const Booking = (props) => {
                     </Card>
                     <Card className="mt-2">
                       <CardHeader className="lao bg-success text-white">
-                        ລາຍລະອຽດຜການຊຳລະເງິນ
+                        <FiCreditCard size={15} color="white" />{" "}
+                        ລາຍລະອຽດການຊຳລະເງິນ
                       </CardHeader>
-                      <CardBody>ຍັິທຳືະ</CardBody>
+                      <CardBody>
+                        <PaymentTab />
+                      </CardBody>
                     </Card>
                   </Col>
                   <Col md="4">
                     <Card className="mt-2">
                       <CardHeader className="lao bg-info text-white">
-                        ລາຍລະອຽດການເດີນທາງ
+                        <BiBus size={15} color="white" /> ລາຍລະອຽດການເດີນທາງ
                       </CardHeader>
                       <CardBody>
                         <CardTitle tag="h5">ສາຍທາງ</CardTitle>
-                        <CardText>ວຽງຈັນ-ປາກເຊ</CardText>
+                        <CardText>{route.routeName}</CardText>
                         <DropdownItem divider />
                         <CardTitle tag="h5">ເວລາອອກເດີນທາງ</CardTitle>
-                        <CardText>8:00</CardText>
+                        <CardText>{time}</CardText>
+                        <DropdownItem divider />
+                        <CardTitle tag="h5">ປະເພດລົດ</CardTitle>
+                        <CardText>{busType.type}</CardText>
                         <DropdownItem divider />
                         <CardTitle tag="h5">ເບີບ່ອນນັ່ງ</CardTitle>
-                        <CardText>A4</CardText>
+                        <CardText>
+                          {selectedSeat &&
+                            selectedSeat.map((seat) => (
+                              <span>{seat.seatNo},</span>
+                            ))}
+                        </CardText>
                         <DropdownItem divider />
                         <CardTitle tag="h5">ລາຄາປີ້</CardTitle>
-                        <CardText>180,000 ກີບ</CardText>
+                        <CardText>{numberWithCommas(fare)} ກີບ</CardText>
+                      </CardBody>
+                    </Card>
+                    <Card className="mt-2">
+                      <CardHeader className="lao bg-warning text-white">
+                        <FaMoneyCheckAlt size={15} color="white" /> ຍອດເງິນ
+                      </CardHeader>
+                      <CardBody>
+                        <div className="summaryText">
+                          <span>ລາຄາປີ້</span>
+                          <span>70,000 ກີບ</span>
+                        </div>
+                        <DropdownItem divider />
+                        <div className="summaryText">
+                          <span>ປະກັນໄພ</span>
+                          <span>10,000 ກີບ</span>
+                        </div>
+                        <DropdownItem divider />
+                        <div className="summaryText">
+                          <span>ທັງໝົດ</span>
+                          <span>80,000 ກີບ</span>
+                        </div>
                       </CardBody>
                     </Card>
                   </Col>
