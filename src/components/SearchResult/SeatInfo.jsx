@@ -9,9 +9,11 @@ const SeatInfo = ({ data }) => {
   const history = useHistory();
   const authState = useSelector((state) => state.auth);
   const { userData } = authState;
+  const bookingState = useSelector((state) => state.booking);
+  const { selectedSeat } = bookingState;
 
   const [seatData] = useStateValue();
-  const { selectedSeat } = seatData;
+  // const { selectedSeat } = seatData;
 
   const handleContinue = () => {
     if (!userData) {
@@ -37,7 +39,7 @@ const SeatInfo = ({ data }) => {
               selectedSeat.map((seat) => (
                 <tr>
                   <td>{seat.seatNo}</td>
-                  <td>25000</td>
+                  <td>{seat.floor}</td>
                 </tr>
               ))}
           </tbody>

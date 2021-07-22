@@ -4,6 +4,7 @@ import { MdEventSeat } from "react-icons/md";
 
 import "../../assets/scss/customs/seat.scss";
 import {
+  clearSelectedRoute,
   clearSelectedSeat,
   removeSelectedSeat,
   setSelectedRoute,
@@ -14,13 +15,13 @@ const Seat = ({ seat, routeId }) => {
   const dispatch = useDispatch();
   const bookingState = useSelector((state) => state.booking);
   const { selectedSeat, route } = bookingState;
-  console.log(selectedSeat.id);
+
   let selected;
   if (selectedSeat.length >= 1 && route === routeId) {
     const ids = selectedSeat.map((s) => s.id);
     selected = ids.includes(seat.id);
   }
-
+  console.log(selectedSeat.length);
   return (
     <div className="the-seat">
       <MdEventSeat
