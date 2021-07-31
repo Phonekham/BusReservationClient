@@ -66,3 +66,24 @@ export const MEMBER_INFO = gql`
     lastname
   }
 `;
+
+export const BOOKING_INFO = gql`
+  fragment bookingInfo on Booking {
+    id
+    bookingItem {
+      id
+      seat {
+        id
+        seatNo
+      }
+      departureTime {
+        id
+        time
+        fare
+        route {
+          routeName
+        }
+      }
+    }
+  }
+`;

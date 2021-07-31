@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { MEMBER_INFO, USER_INFO } from "./fragments";
+import { BOOKING_INFO, MEMBER_INFO, USER_INFO } from "./fragments";
 
 export const LOGIN_MEMBER = gql`
   mutation loginMember($email: String, $username: String, $password: String!) {
@@ -17,4 +17,13 @@ export const REGISTER_MEMBER = gql`
     }
   }
   ${MEMBER_INFO}
+`;
+
+export const BOOK_TICKET = gql`
+  mutation bookTicket($input: BookingInput!) {
+    bookTicket(input: $input) {
+      ...bookingInfo
+    }
+  }
+  ${BOOKING_INFO}
 `;

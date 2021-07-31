@@ -3,17 +3,12 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Button } from "reactstrap";
 
-import { useStateValue } from "../../context/seat/provider";
-
 const SeatInfo = ({ data }) => {
   const history = useHistory();
   const authState = useSelector((state) => state.auth);
   const { userData } = authState;
   const bookingState = useSelector((state) => state.booking);
   const { selectedSeat } = bookingState;
-
-  const [seatData] = useStateValue();
-  // const { selectedSeat } = seatData;
 
   const handleContinue = () => {
     if (!userData) {

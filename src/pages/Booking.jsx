@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { FiUserCheck, FiCreditCard } from "react-icons/fi";
+import { useSelector } from "react-redux";
 import { BiBus } from "react-icons/bi";
 import { FaMoneyCheckAlt } from "react-icons/fa";
 import {
@@ -15,17 +16,17 @@ import {
 } from "reactstrap";
 
 import PassengerForm from "../components/Booking/Form/PassengerForm";
-import { useStateValue } from "../context/seat/provider";
 import { numberWithCommas } from "../utils/formatNumber";
 import PaymentTab from "../components/Booking/Tabs/PaymentTab";
 import "../assets/scss/customs/booking.scss";
 
 const Booking = (props) => {
-  const [seatData] = useStateValue();
-  const { selectedSeat } = seatData;
+  const bookingState = useSelector((state) => state.booking);
+  const { selectedSeat } = bookingState;
   const { state } = props.location;
   const { busType, fare, route, time } = state;
-  const [insurance, setInsurance] = useState(true);
+
+  const total = selectedSeat.length * fare;
 
   return (
     <>
@@ -51,7 +52,7 @@ const Booking = (props) => {
                         ລາຍລະອຽດການຊຳລະເງິນ
                       </CardHeader>
                       <CardBody>
-                        <PaymentTab />
+                        <PaymentTab data={state} />
                       </CardBody>
                     </Card>
                   </Col>
@@ -89,17 +90,17 @@ const Booking = (props) => {
                       <CardBody>
                         <div className="summaryText">
                           <span>ລາຄາປີ້</span>
-                          <span>70,000 ກີບ</span>
+                          <span>{numberWithCommas(fare)} ກີບ</span>
                         </div>
                         <DropdownItem divider />
                         <div className="summaryText">
-                          <span>ປະກັນໄພ</span>
-                          <span>10,000 ກີບ</span>
+                          <span>ຈຳນວນບ່ອນນັ່ງ</span>
+                          <span>{selectedSeat.length} ບ່ອນນັ່ງ</span>
                         </div>
                         <DropdownItem divider />
                         <div className="summaryText">
                           <span>ທັງໝົດ</span>
-                          <span>80,000 ກີບ</span>
+                          <span>{numberWithCommas(total)} ກີບ</span>
                         </div>
                       </CardBody>
                     </Card>

@@ -50,3 +50,16 @@ export const QUERY_SEATS2 = gql`
   }
   ${SEAT_INFO}
 `;
+
+export const QUERY_USER = gql`
+  query user($id: ID!) {
+    user(id: $id) {
+      id
+      username
+      email
+      phone
+      firstname
+      lastname
+    }
+  }
+`;

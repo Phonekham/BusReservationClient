@@ -4,24 +4,24 @@ import { MdEventSeat } from "react-icons/md";
 
 import "../../assets/scss/customs/seat.scss";
 import {
-  clearSelectedRoute,
   clearSelectedSeat,
   removeSelectedSeat,
   setSelectedRoute,
   setSelectedSeat,
+  setTotal,
 } from "../../redux/actions/booking";
 
-const Seat = ({ seat, routeId }) => {
+const Seat = ({ seat, departureTimeId, fare }) => {
   const dispatch = useDispatch();
   const bookingState = useSelector((state) => state.booking);
-  const { selectedSeat, route } = bookingState;
+  const { selectedSeat, departureTime } = bookingState;
 
   let selected;
-  if (selectedSeat.length >= 1 && route === routeId) {
+  if (selectedSeat.length >= 1 && departureTime === departureTimeId) {
     const ids = selectedSeat.map((s) => s.id);
     selected = ids.includes(seat.id);
   }
-  console.log(selectedSeat.length);
+
   return (
     <div className="the-seat">
       <MdEventSeat
@@ -30,13 +30,16 @@ const Seat = ({ seat, routeId }) => {
         size={40}
         onClick={() => {
           if (!selected) {
-            if (route !== routeId) {
+            if (departureTime !== departureTimeId) {
               dispatch(clearSelectedSeat());
+              dispatch(setTotal());
             }
             dispatch(setSelectedSeat(seat));
-            dispatch(setSelectedRoute(routeId));
+            dispatch(setSelectedRoute(departureTimeId, fare));
+            dispatch(setTotal());
           } else {
             dispatch(removeSelectedSeat(seat.id));
+            dispatch(setTotal());
           }
         }}
       />

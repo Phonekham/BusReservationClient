@@ -18,28 +18,27 @@ import Seat from "./Seat";
 import SeatInfo from "./SeatInfo";
 import RouteInfo from "./RouteInfo";
 import SeatSymbol from "./SeatSymbol";
-import { useStateValue } from "../../context/seat/provider";
+import { useSelector } from "react-redux";
 
 const RouteCollapse = ({ data }) => {
-  const [seatData] = useStateValue();
+  const bookingState = useSelector((state) => state.booking);
+  const { departureTime } = bookingState;
+  const { id, busType, fare, time } = data;
 
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
-  const { id, busType, fare, route, time } = data;
-
   const { data: seats } = useQuery(QUERY_SEATS, {
     variables: { busType: busType.id },
   });
-
   const { data: seats2 } = useQuery(QUERY_SEATS2, {
     variables: { busType: busType.id },
   });
-  console.log(data);
+
   return (
     <Card className="m-2 lao">
       <CardTitle className="text-center mt-2" tag="h5">
-        {route.routeName}
+        {data.route.routeName}
       </CardTitle>
       <Row>
         <RouteInfo key={id} fare={fare} busType={busType} time={time} />
@@ -78,7 +77,12 @@ const RouteCollapse = ({ data }) => {
                       {seats &&
                         seats.seats.map((seat) => (
                           <Col md="3" sm="3" xs="3">
-                            <Seat key={seat.id} seat={seat} routeId={id} />
+                            <Seat
+                              key={seat.id}
+                              seat={seat}
+                              departureTimeId={id}
+                              fare={fare}
+                            />
                           </Col>
                         ))}
                     </Row>
@@ -97,7 +101,12 @@ const RouteCollapse = ({ data }) => {
                         {seats2 &&
                           seats2.seats2.map((seat) => (
                             <Col md="3" sm="3" xs="3">
-                              <Seat key={seat.id} seat={seat} routeId={id} />
+                              <Seat
+                                key={seat.id}
+                                seat={seat}
+                                departureTimeId={id}
+                                fare={fare}
+                              />
                             </Col>
                           ))}
                       </Row>
@@ -106,7 +115,7 @@ const RouteCollapse = ({ data }) => {
                 </Col>
               )}
               <Col md="4">
-                {seatData.route === id && <SeatInfo routeId={id} data={data} />}
+                {departureTime === id && <SeatInfo routeId={id} data={data} />}
               </Col>
             </Row>
           </CardBody>
