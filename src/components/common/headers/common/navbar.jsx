@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withTranslate } from "react-redux-multilingual";
 
+import "./styles.scss";
+
 class NavBar extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       navClose: { right: "0px" },
     };
@@ -21,7 +22,6 @@ class NavBar extends Component {
   }
 
   openNav() {
-    console.log("open");
     this.setState({ navClose: { right: "0px" } });
   }
   closeNav() {
@@ -43,7 +43,7 @@ class NavBar extends Component {
             <div className="toggle-nav" onClick={this.openNav.bind(this)}>
               <i className="fa fa-bars sidebar-bar"></i>
             </div>
-            <ul className="nav-menu lao" style={this.state.navClose}>
+            <ul className={`nav-menu lao`} style={this.state.navClose}>
               <li className="back-btn" onClick={this.closeNav.bind(this)}>
                 <div className="mobile-back text-right">
                   <span>Back</span>

@@ -15,3 +15,10 @@
 .lao {
   font-family: Noto Lao;
 }
+
+header#sticky {
+  @media (min-width: 400px) {
+    background-color: #f8edeb;
+    height: 140px;
+  }
+}
