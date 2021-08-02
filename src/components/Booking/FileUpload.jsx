@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import fetch from "isomorphic-unfetch";
 import axios from "axios";
-import { Row, Col, Spinner, FormGroup, Card } from "reactstrap";
 import { FaTrash, FaImage } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import { Row, Col, Spinner, FormGroup, Card, Alert } from "reactstrap";
+import { setPayment } from "../../redux/actions/booking";
 
-const FileUpload = ({}) => {
+const FileUpload = () => {
+  const dispatch = useDispatch();
+  const bookingState = useSelector((state) => state.booking);
   const [featuredImage, setFeaturedImage] = useState({
     url: "",
     public_id: "",
@@ -17,7 +20,7 @@ const FileUpload = ({}) => {
     setLoadImage(true);
     const data = new FormData();
     data.append("file", file);
-    data.append("upload_preset", "bus-reservationn");
+    data.append("upload_preset", "bus-reservation");
     try {
       const res = await fetch(
         "https://api.cloudinary.com/v1_1/dmxp0i0sh/image/upload",
@@ -40,11 +43,14 @@ const FileUpload = ({}) => {
         return [
           setFeaturedImage(""),
           setIsSelectImage(false),
-          //   dispatch({
-          //     type: SET_REGISTER,
-          //     ...registerState,
-          //     imageUrl: "",
-          //   }),
+          dispatch(
+            setPayment({
+              ...bookingState,
+              paymentImage: "",
+              paymentDate: "",
+              paymentStatus: "",
+            })
+          ),
         ];
       })
       .catch((error) => console.log(error, "fail to delete"));
@@ -57,11 +63,14 @@ const FileUpload = ({}) => {
     const url = await uploadSelectedImage(e.target.files[0]);
     return [
       setFeaturedImage({ url: url.secure_url, public_id: url.public_id }),
-      //   dispatch({
-      //     type: SET_REGISTER,
-      //     ...registerState,
-      //     imageUrl: url.secure_url,
-      //   }),
+      dispatch(
+        setPayment({
+          ...bookingState,
+          paymentImage: url.secure_url,
+          paymentDate: new Date(),
+          paymentStatus: "pending",
+        })
+      ),
     ];
   };
 
@@ -77,6 +86,9 @@ const FileUpload = ({}) => {
   return (
     <>
       <Row className="p-2">
+        <Alert color="warning" className="text-center">
+          <h4>ອັບໂລດສະລິບຢືນຢັນການຊຳລະເງິນ</h4>
+        </Alert>
         <Col md="10" offset="1">
           <FormGroup>
             <input
@@ -113,8 +125,10 @@ const FileUpload = ({}) => {
             </div>
           ) : (
             <Card className="text-center">
-              <h3 className="lao">ເລືອກຮູບ</h3>
-              <FaImage size={150} color="grey" />
+              <h3 className="lao mt-1">ເລືອກຮູບ</h3>
+              <div className="text-center">
+                <FaImage size={150} color="grey" />
+              </div>
             </Card>
           )}
         </Col>

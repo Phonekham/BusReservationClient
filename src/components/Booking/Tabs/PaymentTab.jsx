@@ -68,11 +68,14 @@ const PaymentTab = () => {
     },
     onCompleted: (data) => {
       if (data) {
-        toast.success(`ການເພີ່ມຂໍ້ມູນສຳເລັດແລ້ວ`, {
-          position: "top-center",
-          autoClose: 3000,
-          className: "lao",
-        });
+        toast.success(
+          `ການຈອງປີ້ສຳເລັດແລ້ວ ໜ່ວຍງານຂອງເຮົາກຳລົງກວດສອບຂໍ້ມູນຂອງທ່ານ`,
+          {
+            position: "top-center",
+            autoClose: 3000,
+            className: "lao",
+          }
+        );
         dispatch(clearBooking());
         history.push("/");
       }

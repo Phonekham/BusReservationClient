@@ -11,8 +11,8 @@ const PassengerForm = () => {
   const authState = useSelector((state) => state.auth);
   const bookingState = useSelector((state) => state.booking);
 
-  const { user } = authState.userData;
-  const { data } = useQuery(QUERY_USER, { variables: { id: user } });
+  const { id } = authState.userData;
+  const { data } = useQuery(QUERY_USER, { variables: { id } });
   const { fullname, tel, email } = bookingState;
 
   useEffect(() => {
