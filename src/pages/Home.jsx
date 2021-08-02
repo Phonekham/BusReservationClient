@@ -12,11 +12,9 @@ const Home = () => {
         <CardBody>
           <Row>
             <Col md="6">
-              <Card className="searchbar-card">
-                <CardBody>
-                  <SearchBar />
-                </CardBody>
-              </Card>
+              <div className="searchbar-card ">
+                <SearchBar />
+              </div>
             </Col>
             <Col md="6">
               <HomeCarousel />

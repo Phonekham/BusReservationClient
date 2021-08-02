@@ -9,17 +9,16 @@ import { useStateValue } from "../../context/queryRoute/provider";
 import { SET_QUERY_ROUTE } from "../../context/types";
 import { CHECK_DEPAERTURE_TIME } from "../../graphql/queries";
 import SelectRoute from "./SelectRoute";
-import SelectSeatQty from "./SelectSeatQty";
 
 const SearchBar = () => {
   const [routeData, dispatch] = useStateValue();
   const history = useHistory();
-  const { departureDate, seatQty, route } = routeData;
+  const { departureDate, route } = routeData;
 
   const [checkQueryRoute, { data, loading }] = useLazyQuery(
     CHECK_DEPAERTURE_TIME,
     {
-      variables: { departureDate, seatQty, route },
+      variables: { departureDate, route },
       fetchPolicy: "network-only",
       onError(err) {
         console.log(err);
@@ -38,14 +37,15 @@ const SearchBar = () => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <Row>
-          <Col md={{ size: 3, offset: 1 }} offset="1" sm="12">
+        <h3 className="text-center lao mt-3">ຄົ້ນຫາຖ້ຽວລົດ</h3>
+        <Row className="m-1">
+          <Col md="6" offset="1" sm="12">
             <FormGroup>
               <Label for="nameMulti">ປາຍທາງ</Label>
               <SelectRoute />
             </FormGroup>
           </Col>
-          <Col md="3" offset="1" sm="12">
+          <Col md="6" offset="1" sm="12">
             <FormGroup>
               <Label for="nameMulti">ວັນທີ</Label>
               <Input
@@ -63,14 +63,8 @@ const SearchBar = () => {
               />
             </FormGroup>
           </Col>
-          <Col md="3" offset="1" sm="12">
-            <FormGroup>
-              <Label for="nameMulti">ຈຳນວນຜູ້ໂດຍສານ</Label>
-              <SelectSeatQty />
-            </FormGroup>
-          </Col>
         </Row>
-        <div className="text-center mt-3">
+        <div className="text-center m-3 ">
           <Button color="info" type="submit">
             ຄົ້ນຫາລົດ
           </Button>

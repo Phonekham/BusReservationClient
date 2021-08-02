@@ -37,7 +37,7 @@ const RouteCollapse = ({ data }) => {
 
   return (
     <Card className="m-2 lao">
-      <CardTitle className="text-center mt-2" tag="h5">
+      <CardTitle className="text-center mt-2" tag="h4">
         {data.route.routeName}
       </CardTitle>
       <Row>
