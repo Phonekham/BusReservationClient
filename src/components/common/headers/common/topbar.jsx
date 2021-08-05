@@ -31,7 +31,8 @@ const TopBarDark = () => {
           <div className="col-lg-6 text-right">
             <ul className="header-dropdown">
               <li className="onhover-dropdown mobile-account">
-                <i className="fa fa-user" aria-hidden="true"></i> My Account
+                <i className="fa fa-user" aria-hidden="true"></i>
+                {userData ? userData.username : "Account"}
                 <ul className="onhover-show-div">
                   {!userData ? (
                     <>
@@ -45,7 +46,7 @@ const TopBarDark = () => {
                   ) : (
                     <>
                       <li>
-                        <Link to="/login">Profile</Link>
+                        <Link to="/profile">Profile</Link>
                       </li>
                       <li>
                         <a onClick={logout}>Logout</a>
