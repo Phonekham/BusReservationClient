@@ -14,8 +14,14 @@ const PaymentCollapse = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
-  const handleSetPay = (status) => {
-    dispatch(setPayment({ ...bookingState, payNow: status }));
+  const handleSetPay = (bool) => {
+    dispatch(
+      setPayment({
+        ...bookingState,
+        payNow: bool,
+        status: bool === true ? "pending" : "not-pay",
+      })
+    );
   };
 
   return (

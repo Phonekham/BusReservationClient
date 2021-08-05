@@ -70,19 +70,27 @@ export const MEMBER_INFO = gql`
 export const BOOKING_INFO = gql`
   fragment bookingInfo on Booking {
     id
+    bookingNo
+    status
+    fare
+    qty
+    totalAmount
+    fullname
+    createdAt
+    departureDate
+    departureTime {
+      id
+      time
+    }
+    route {
+      id
+      routeName
+    }
     bookingItem {
       id
       seat {
         id
         seatNo
-      }
-      departureTime {
-        id
-        time
-        fare
-        route {
-          routeName
-        }
       }
     }
   }

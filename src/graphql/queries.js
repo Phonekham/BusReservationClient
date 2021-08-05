@@ -1,6 +1,11 @@
 import { gql } from "@apollo/client";
 
-import { ROUTE_INFO, ROUTE_LISTS_INFO, SEAT_INFO } from "./fragments";
+import {
+  BOOKING_INFO,
+  ROUTE_INFO,
+  ROUTE_LISTS_INFO,
+  SEAT_INFO,
+} from "./fragments";
 
 export const CHECK_DEPAERTURE_TIME = gql`
   query checkDepartureTime($departureDate: Date!, $route: ID!) {
@@ -58,4 +63,13 @@ export const QUERY_USER = gql`
       lastname
     }
   }
+`;
+
+export const QUERY_BOOKING_DETAIL = gql`
+  query bookingDetail($id: ID!) {
+    bookingDetail(id: $id) {
+      ...bookingInfo
+    }
+  }
+  ${BOOKING_INFO}
 `;

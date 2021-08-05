@@ -15,6 +15,8 @@ import {
   Col,
   Button,
   Form,
+  Alert,
+  Spinner,
 } from "reactstrap";
 
 import PaymentCollapse from "../PaymentCollapse";
@@ -27,6 +29,8 @@ const PaymentTab = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const bookingState = useSelector((state) => state.booking);
+  const authState = useSelector((state) => state.auth);
+  const { userData } = authState;
   const [activeTab, setActiveTab] = useState("1");
   const toggle = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
@@ -46,6 +50,7 @@ const PaymentTab = () => {
     fare,
     departureTime,
     totalAmount,
+    status,
   } = bookingState;
 
   const [bookTicket, { error, loading }] = useMutation(BOOK_TICKET, {
@@ -64,6 +69,8 @@ const PaymentTab = () => {
         departureTime,
         fare,
         totalAmount,
+        member: userData.id,
+        status,
       },
     },
     onCompleted: (data) => {
@@ -77,7 +84,10 @@ const PaymentTab = () => {
           }
         );
         dispatch(clearBooking());
-        history.push("/");
+        history.push({
+          pathname: "/booking-detail",
+          state: data.bookTicket.id,
+        });
       }
     },
     onError(err) {
@@ -117,11 +127,18 @@ const PaymentTab = () => {
               <Col md="12">
                 <div className="text-center">
                   <Button color="success" type="submit">
+                    {loading && <Spinner size="sm" color="light" />}
                     ຢືນຢັນການຈອງ
                   </Button>
                 </div>
               </Col>
             </Row>
+            {error &&
+              error.graphQLErrors.map(({ message }, i) => (
+                <Alert color="danger">
+                  <div key={i}>{message}</div>
+                </Alert>
+              ))}
           </TabPane>
         </Form>
       </TabContent>

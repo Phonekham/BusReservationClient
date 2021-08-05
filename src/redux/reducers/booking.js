@@ -21,10 +21,11 @@ const initialState = {
   email: "",
   tel: "",
   totalAmount: 0,
-  payNow: "",
+  payNow: false,
   paymentImage: "",
   paymentStatus: "",
   paymentDate: "",
+  status: "not-pay",
 };
 
 const booking = (state = initialState, action) => {
@@ -75,6 +76,7 @@ const booking = (state = initialState, action) => {
         paymentDate: action.payload.paymentDate,
         paymentImage: action.payload.paymentImage,
         paymentStatus: action.payload.paymentStatus,
+        status: action.payload.status,
       };
     case SET_PASSENGER_INFO:
       return {
