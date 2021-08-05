@@ -10,6 +10,7 @@ import SearchResults from "./pages/SearchResults";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import BookingDetail from "./pages/BookingDetail";
+import UserBookings from "./pages/UserBookings";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route exact path="/search-results" component={SearchResults} />
         <Route path="/booking" component={Booking} />
         <Route path="/booking-detail" component={BookingDetail} />
+        <Route path="/user-bookings" component={UserBookings} />
 
         {/* Auth Route */}
         <Route path="/login" component={Login} />

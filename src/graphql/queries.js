@@ -73,3 +73,12 @@ export const QUERY_BOOKING_DETAIL = gql`
   }
   ${BOOKING_INFO}
 `;
+
+export const QUERY_USER_BOOKINGS = gql`
+  query userBookings($id: ID!) {
+    userBookings(id: $id) {
+      ...bookingInfo
+    }
+  }
+  ${BOOKING_INFO}
+`;

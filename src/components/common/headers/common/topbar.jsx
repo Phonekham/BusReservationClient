@@ -45,6 +45,9 @@ const TopBarDark = () => {
                     </>
                   ) : (
                     <>
+                      <li className="lao">
+                        <Link to="/user-bookings">ປີ້ຂອງຂ້ອຍ</Link>
+                      </li>
                       <li>
                         <Link to="/profile">Profile</Link>
                       </li>
