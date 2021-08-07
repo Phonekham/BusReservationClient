@@ -13,7 +13,7 @@ const UserBookings = (props) => {
   const { userData } = authState;
 
   const { data: { userBookings } = {} } = useQuery(QUERY_USER_BOOKINGS, {
-    variables: { id: userData.id },
+    variables: { id: userData && userData.id },
   });
 
   return (

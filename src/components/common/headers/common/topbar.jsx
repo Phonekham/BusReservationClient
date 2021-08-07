@@ -1,16 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { handleLogout } from "../../../../redux/actions/auth";
 
 const TopBarDark = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const userState = useSelector((state) => state.auth);
   const { userData } = userState;
 
   const logout = () => {
     dispatch(handleLogout());
+    history.push("/");
   };
 
   return (
