@@ -1,15 +1,8 @@
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { RiSteering2Fill } from "react-icons/ri";
-import {
-  Collapse,
-  Button,
-  CardBody,
-  Card,
-  CardTitle,
-  Col,
-  Row,
-} from "reactstrap";
+import { useSelector } from "react-redux";
+import { Collapse, Button, CardBody, Card, Col, Row } from "reactstrap";
 
 import "../../assets/scss/customs/SearchResult.scss";
 
@@ -18,12 +11,11 @@ import Seat from "./Seat";
 import SeatInfo from "./SeatInfo";
 import RouteInfo from "./RouteInfo";
 import SeatSymbol from "./SeatSymbol";
-import { useSelector } from "react-redux";
 
 const RouteCollapse = ({ data }) => {
   const bookingState = useSelector((state) => state.booking);
   const { departureTime } = bookingState;
-  const { id, busType, fare, time } = data;
+  const { id, busType, fare, time, isBookable } = data;
 
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -36,15 +28,19 @@ const RouteCollapse = ({ data }) => {
   });
 
   return (
-    <Card className="m-2 lao">
-      <CardTitle className="text-center mt-2" tag="h4">
-        {data.route.routeName}
-      </CardTitle>
+    <Card outline body color="info" className="m-3 lao p-2 pt-4">
       <Row>
-        <RouteInfo key={id} fare={fare} busType={busType} time={time} />
+        <RouteInfo
+          key={id}
+          fare={fare}
+          busType={busType}
+          time={time}
+          isBookable={isBookable}
+        />
         <Col sm="2">
           <div className="m-2">
             <Button
+              disabled={!isBookable}
               color={isOpen ? "danger" : "primary"}
               onClick={toggle}
               style={{ marginBottom: "1rem" }}

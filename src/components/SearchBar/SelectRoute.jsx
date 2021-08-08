@@ -23,7 +23,7 @@ const SelectRoute = () => {
         dispatch({
           type: SET_QUERY_ROUTE,
           ...routeData,
-          route: e.value,
+          route: e,
         })
       }
       options={options}

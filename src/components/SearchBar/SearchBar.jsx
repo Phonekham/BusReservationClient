@@ -18,7 +18,7 @@ const SearchBar = () => {
   const [checkQueryRoute, { data, loading }] = useLazyQuery(
     CHECK_DEPAERTURE_TIME,
     {
-      variables: { departureDate, route },
+      variables: { departureDate, route: route.value },
       fetchPolicy: "network-only",
       onError(err) {
         console.log(err);
