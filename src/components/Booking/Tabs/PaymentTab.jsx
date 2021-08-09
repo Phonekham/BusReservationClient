@@ -63,7 +63,7 @@ const PaymentTab = () => {
         email,
         fullname,
         tel,
-        route,
+        route: route.value,
         seat,
         departureDate,
         departureTime,
