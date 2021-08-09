@@ -6,12 +6,13 @@ import queryRoute from "./queryRoute";
 import register from "./register";
 import auth from "./auth";
 import booking from "./booking";
-
+import payBooking from "./payBooking";
 const rootReducer = combineReducers({
   queryRoute,
   register,
   auth,
   booking,
+  payBooking,
   Intl,
 });
 

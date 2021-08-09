@@ -1,8 +1,9 @@
 import React from "react";
-
 import moment from "moment";
 import { Badge, Button, Table } from "reactstrap";
 import { Link } from "react-router-dom";
+
+import PayBookingModal from "../Modal/PayBookingModal2";
 
 const UserBookingTable = ({ bookings }) => {
   return (
@@ -67,7 +68,11 @@ const UserBookingTable = ({ bookings }) => {
                 <td className="lao text-center">{renderSatus(status)}</td>
                 <td className="lao text-center">
                   {status === "not-pay" && (
-                    <Button color="info">ຊຳລະການສັງຈອງ</Button>
+                    <Link to={{ pathname: "pay-booking", state: b.id }}>
+                      <Button className="mr-1" color="info">
+                        ຊຳລະການສັງຈອງ
+                      </Button>
+                    </Link>
                   )}
                   <Link to={{ pathname: "booking-detail", state: b.id }}>
                     <Button color="success">ລາຍລະອຽດ</Button>

@@ -27,3 +27,12 @@ export const BOOK_TICKET = gql`
   }
   ${BOOKING_INFO}
 `;
+
+export const PAY_BOOKING = gql`
+  mutation payBooking($bookingId: ID!, $input: PayBookingInput!) {
+    payBooking(bookingId: $bookingId, input: $input) {
+      ...bookingInfo
+    }
+  }
+  ${BOOKING_INFO}
+`;

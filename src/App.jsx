@@ -11,6 +11,7 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import BookingDetail from "./pages/BookingDetail";
 import UserBookings from "./pages/UserBookings";
+import PayBooking from "./pages/PayBooking";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/booking" component={Booking} />
         <Route path="/booking-detail" component={BookingDetail} />
         <Route path="/user-bookings" component={UserBookings} />
+        <Route path="/pay-booking" component={PayBooking} />
 
         {/* Auth Route */}
         <Route path="/login" component={Login} />
