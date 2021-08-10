@@ -88,6 +88,7 @@ const PaymentTab = () => {
           pathname: "/booking-detail",
           state: data.bookTicket.id,
         });
+        window.location.reload(false);
       }
     },
     onError(err) {

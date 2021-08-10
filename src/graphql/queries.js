@@ -82,3 +82,14 @@ export const QUERY_USER_BOOKINGS = gql`
   }
   ${BOOKING_INFO}
 `;
+
+export const QUERY_GET_BOOKED_SEATS = gql`
+  query getBookedSeat($departureDate: Date!, $departureTime: ID!) {
+    getBookedSeats(
+      departureDate: $departureDate
+      departureTime: $departureTime
+    ) {
+      id
+    }
+  }
+`;
