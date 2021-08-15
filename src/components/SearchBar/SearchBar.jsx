@@ -2,6 +2,8 @@ import { useLazyQuery } from "@apollo/client";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { Button, Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
@@ -52,6 +54,7 @@ const SearchBar = () => {
                 className="form-control"
                 type="date"
                 name="depaertureDate"
+                min={new Date()}
                 placeholder="dd/MM/yyyy"
                 onChange={(e) =>
                   dispatch({
@@ -61,6 +64,19 @@ const SearchBar = () => {
                   })
                 }
               />
+              {/* <DatePicker
+                className="form-control"
+                selected={departureDate && new Date(departureDate)}
+                minDate={new Date()}
+                onChange={(date) =>
+                  dispatch({
+                    type: SET_QUERY_ROUTE,
+                    ...routeData,
+                    departureDate: date,
+                  })
+                }
+                dateFormat="dd/MM/yyyy"
+              /> */}
             </FormGroup>
           </Col>
         </Row>
