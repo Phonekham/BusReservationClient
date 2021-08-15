@@ -37,7 +37,7 @@ const SearchBar = () => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <h3 className="text-center lao mt-3">ຄົ້ນຫາຖ້ຽວລົດ</h3>
+        <h3 className="text-center lao mt-3">ຄົ້ນຫາ</h3>
         <Row className="m-1">
           <Col md="6" offset="1" sm="12">
             <FormGroup>

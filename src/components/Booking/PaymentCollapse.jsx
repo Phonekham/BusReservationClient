@@ -69,7 +69,7 @@ const PaymentCollapse = () => {
             <Row>
               <Col md="6">
                 <div className="text-center">
-                  <h4>ຊື່ບັນຊີ: Phonekham Keomany</h4>
+                  <h4>ຊື່ບັນຊີ: Soutern Bus</h4>
                   <h4>ເລກບັນຊີ: 6582 3658 25487 23658</h4>
                 </div>
                 <img
