@@ -61,8 +61,8 @@ class NavBar extends Component {
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="nav-link">
-                  {translate("contact")}
+                <Link to="/how-to-book" className="nav-link">
+                  {translate("how_to_book")}
                 </Link>
               </li>
             </ul>

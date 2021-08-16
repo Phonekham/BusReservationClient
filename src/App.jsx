@@ -12,12 +12,16 @@ import Register from "./pages/auth/Register";
 import BookingDetail from "./pages/BookingDetail";
 import UserBookings from "./pages/UserBookings";
 import PayBooking from "./pages/PayBooking";
+import About from "./pages/About";
+import HowToBook from "./pages/HowToBook";
 
 const App = () => {
   return (
     <Switch>
       <Layout>
         <Route exact path="/" component={Home} />
+        <Route exact path="/about-us" component={About} />
+        <Route exact path="/how-to-book" component={HowToBook} />
         <Route exact path="/search-results" component={SearchResults} />
         <Route path="/booking" component={Booking} />
         <Route path="/booking-detail" component={BookingDetail} />
