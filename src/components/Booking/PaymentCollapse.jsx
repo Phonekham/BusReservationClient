@@ -41,6 +41,12 @@ const PaymentCollapse = () => {
         >
           ຈ່າຍພາຍຫຼັງ
         </Button>
+        {!payNow && (
+          <p className="mt-3 text-danger">
+            ໝາຍເຫດ: ຖ້າຈະຈ່າຍພາຍຫຼັງ ກາລຸນາຈ່າຍພາຍໃນ1ຊົວໂມງ
+            ບໍ່ສະນັ້ນການຈອງຈະຖືກຍົກເລີກ
+          </p>
+        )}
       </div>
       <Row className="mt-2">
         <Col md="3">

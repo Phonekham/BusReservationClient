@@ -21,6 +21,7 @@ const RouteCollapse = ({ data }) => {
   const bookingState = useSelector((state) => state.booking);
   const { departureTime } = bookingState;
   const { id, busType, fare, time, isBookable } = data;
+  console.log(data);
   const [routeData] = useStateValue();
   const { departureDate } = routeData;
 
@@ -29,10 +30,10 @@ const RouteCollapse = ({ data }) => {
   const toggle = () => setIsOpen(!isOpen);
 
   const { data: seats } = useQuery(QUERY_SEATS, {
-    variables: { busType: busType.id },
+    variables: { busType: busType && busType.id },
   });
   const { data: seats2 } = useQuery(QUERY_SEATS2, {
-    variables: { busType: busType.id },
+    variables: { busType: busType && busType.id },
   });
 
   const [fetchBookedSeats, { data: { getBookedSeats } = {} }] = useLazyQuery(

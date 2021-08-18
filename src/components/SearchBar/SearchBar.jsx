@@ -82,7 +82,7 @@ const SearchBar = () => {
         </Row>
         <div className="text-center m-3 ">
           <Button color="info" type="submit">
-            ຄົ້ນຫາລົດ
+            ຄົ້ນຫາ
           </Button>
         </div>
       </Form>
