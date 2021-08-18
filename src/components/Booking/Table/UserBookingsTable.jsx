@@ -49,6 +49,12 @@ const UserBookingTable = ({ bookings }) => {
                     <h6 className="text-white">ຍັງບໍ່ທັນຊຳລະ</h6>
                   </Badge>
                 );
+              } else if (status === "issued") {
+                return (
+                  <Badge color="primary">
+                    <h6 className="text-white">ອອກແລ້ວ</h6>
+                  </Badge>
+                );
               }
             };
 

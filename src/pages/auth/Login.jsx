@@ -57,7 +57,7 @@ const Login = () => {
                 ) : null}
                 <Form className="theme-form" onSubmit={handleSubmit}>
                   <div className="form-group">
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">Username</label>
                     <input
                       type="text"
                       className="form-control"
